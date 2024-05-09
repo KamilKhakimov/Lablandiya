@@ -82,5 +82,9 @@
   <ItemGroup>
     <None Include="Картинки\free-icon-floppy-disk-2344313.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Картинки\1.png" />
+    <Content Include="Картинки\2.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
