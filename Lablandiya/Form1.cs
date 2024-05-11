@@ -34,7 +34,7 @@ namespace Lablandiya
 
         private void menuStrip4_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            
+
         }
 
         private void menuStrip3_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -82,7 +82,7 @@ namespace Lablandiya
             }
         }
 
-        
+
 
         private void richTextBox1_DragEnter(object sender, DragEventArgs e)
         {
@@ -129,7 +129,7 @@ namespace Lablandiya
             System.IO.FileStream file;
             SaveFileDialog a = new SaveFileDialog();
             a.InitialDirectory = "c:\\Users\\Lenovo\\Desktop";
-            if(a.ShowDialog() == DialogResult.OK)
+            if (a.ShowDialog() == DialogResult.OK)
             {
                 this.filePath = a.FileName;
                 FileStream fs = File.Create(this.filePath);
@@ -148,7 +148,7 @@ namespace Lablandiya
                 this.filePath = a.FileName;
                 FileStream fs = File.OpenRead(this.filePath);
                 byte[] buffer = new byte[fs.Length];
-                fs.Read(buffer,0,buffer.Length);
+                fs.Read(buffer, 0, buffer.Length);
                 richTextBox1.Text = Encoding.Default.GetString(buffer);
                 fs.Close();
             }
@@ -296,7 +296,8 @@ namespace Lablandiya
 
         public int check(string substr)
         {
-            if(substr != "") { 
+            if (substr != "")
+            {
                 switch (substr)
                 {
                     case "function":
@@ -344,6 +345,9 @@ namespace Lablandiya
                     case ";":
                         return 12;
                         break;
+                    case ",":
+                        return 13;
+                        break;
                     default:
                         {
                             bool isDig = true;
@@ -374,7 +378,7 @@ namespace Lablandiya
                 return 11;
             }
         }
-         struct lexem
+        struct lexem
         {
             public int key;
             public string type;
@@ -382,48 +386,60 @@ namespace Lablandiya
             public int start;
             public int end;
         }
+
+
+
+
         private void пускToolStripMenuItem_Click(object sender, EventArgs e)
         {
             richTextBox2.Clear();
-            Dictionary <string, int> a  = new Dictionary<string, int>();
+            Dictionary<string, int> a = new Dictionary<string, int>();
             string str = Regex.Replace(richTextBox1.Text, @"[\r]", " ");
             string[] t1 = str.Split(' ', '\n', '\t');
             List<string> t2 = new List<string>();
-            char[] specSimb = {'(', ')', '{', '}', '*', '/', '+', '-', ',' };
-            foreach(string t1string in t1)
+            char[] specSimb = { '(', ')', '{', '}', '*', '/', '+', '-', ',', ';' };
+
+
+            foreach (string t1string in t1)
             {
                 int starti = 0;
-                for(int i = 0; i< t1string.Length; i++)
+                for (int i = 0; i < t1string.Length; i++)
                 {
                     if (specSimb.Contains(t1string[i]))
                     {
-                        if(i-starti != 1 || !((t1string[i]== ')' && t2.Last()=="(") || (t1string[i] == '}' && t2.Last() == "{")))
+                        if (i - starti != 1 || !((t1string[i] == ')' && t2.Last() == "(") || (t1string[i] == '}' && t2.Last() == "{")))
                         {
-                            t2.Add(t1string.Substring(starti, i- starti));
+                            t2.Add(t1string.Substring(starti, i - starti));
                             starti = i++;
                         }
                         t2.Add(t1string.Substring(starti, 1));
                         starti = i++;
                     }
                 }
-                if(t1string.Length != starti)
+
+
+                if (t1string.Length != starti)
                     t2.Add(t1string.Substring(starti, t1string.Length - starti));
             }
-            while(t2.Remove(String.Empty));
+            while (t2.Remove(String.Empty)) ;
             List<lexem> lexems = new List<lexem>();
             List<string> variables = new List<string>();
             bool test = true;
             int start = 0;
             int numbers = 1;
-            int index = 0;
+            int index = 1;
+
+
             foreach (string st in t2.ToArray())
             {
+
+
                 int end = start + st.Length;
                 string type = "";
                 int key = check(st);
                 if (key == 0)
                 {
-                    richTextBox2.Text = richTextBox2.Text + "Error: " + st+ "\n";
+                    richTextBox2.Text = richTextBox2.Text + "Error: " + st + "\n";
                     test = false;
                 }
 
@@ -438,18 +454,21 @@ namespace Lablandiya
                         a["keyword"] = 1;
                     }
                     type = "Ключевое слово";
-                } else if (key == 2)
+                }
+                else if (key == 2)
                 {
-                    if(a.ContainsKey("("))
+                    if (a.ContainsKey("("))
                     {
                         a["("] = a["("] + 1;
-                    } else
+                    }
+                    else
                     {
                         a["("] = 1;
                     }
                     type = "(";
                 }
-                else  if (key == 3) {
+                else if (key == 3)
+                {
                     if (a.ContainsKey(")"))
                     {
                         a[")"] = a[")"] + 1;
@@ -552,7 +571,7 @@ namespace Lablandiya
                 }
                 //out
                 //richTextBox2.Text = richTextBox2.Text + $"Code: {key} - {type} - {st} - c {start} до {end} символы\n";
-                lexem word = new lexem { key = key, type = type, st = st, start = start, end = end};
+                lexem word = new lexem { key = key, type = type, st = st, start = start, end = end };
                 lexems.Add(word);
                 start = end;
                 numbers++;
@@ -560,36 +579,42 @@ namespace Lablandiya
 
             int step = 0;
             bool result = true;
+            bool ch = false;
+
+            if (!test)
+                return;
             //bool chError = false;
-            for(int i = 0; i<lexems.Count; i++)
+            for (int i = 0; i < lexems.Count; i++)
             {
                 if (lexems[i].key >= 8 && lexems[i].key <= 10)
                     continue;
 
 
                 // проверка на Function
-                if(step == 0)
+                if (step == 0)
                 {
-                    if(lexems[i].st == "function")
+                    if (lexems[i].st == "function")
                     {
                         step++;
                     }
-                    else if(lexems[i].st == "(")
+                    else if (lexems[i].st == "(")
                     {
-                        richTextBox2.AppendText($"Попустили слово function перед {lexems[i].st}\n");
-                        step+=2;
+                        richTextBox2.AppendText($"{index}. Попустили слово function перед {lexems[i].st}\n");
+                        step += 2;
+                        index++;
                     }
                     else
                     {
-                        richTextBox2.AppendText($"Ожидается ключевое слово function вместо {lexems[i].st}\n");
+                        richTextBox2.AppendText($"{index}. Ожидается ключевое слово function вместо {lexems[i].st}\n");
                         step++;
+                        index++;
                         //lexem word = new lexem();
                         //word.st = "function";
                         //lexems.Insert(i, word);
                     }
                 }
-                
-                
+
+
                 // проверка на (
                 else if (step == 1)
                 {
@@ -599,12 +624,15 @@ namespace Lablandiya
                     }
                     else if (lexems[i].key == 7)
                     {
-                        richTextBox2.AppendText($"Попустили слово ( перед {lexems[i].st}\n");
-                        step+=2;
+                        richTextBox2.AppendText($"{index}. Попустили символ ( перед {lexems[i].st}\n");
+                        step++;
+                        i--;
+                        index++;
                     }
                     else
                     {
-                        richTextBox2.AppendText($"Ожидается ( function с {lexems[i].st}\n");
+                        richTextBox2.AppendText($"{index}. Ожидается (  до {lexems[i].st}\n");
+                        index++;
                         step++;
                     }
                 }
@@ -616,9 +644,9 @@ namespace Lablandiya
                     {
                         step++;
                     }
-                    else if( lexems[i].key == 7)
+                    else if (lexems[i].key == 7)
                     {
-                        while(lexems[i].key == 7)
+                        while (lexems[i].key == 7)
                         {
                             variables.Add(lexems[i].st);
                             i++;
@@ -631,8 +659,9 @@ namespace Lablandiya
                             }
                             else
                             {
-                                richTextBox2.AppendText($"Ожидается ) перед: {lexems[i].st}\n");
+                                richTextBox2.AppendText($"{index}. Ожидается ) перед: {lexems[i].st}\n");
                                 i--;
+                                index++;
                                 step++;
                                 break;
                             }
@@ -640,14 +669,16 @@ namespace Lablandiya
                     }
                     else
                     {
-                        richTextBox2.AppendText($"Ожидается Имя переменной с {lexems[i].st}\n");
+                        richTextBox2.AppendText($"{index}. Ожидается Имя переменной с {lexems[i].st}\n");
+                        index++;
                         step++;
                     }
                 }
-                
+
                 // проверка на {
                 else if (step == 3)
                 {
+
                     if (lexems[i].key == 4)
                     {
                         step++;
@@ -655,22 +686,25 @@ namespace Lablandiya
                     // Проверить на variable
                     else if (lexems[i].st == "return")
                     {
-                        richTextBox2.AppendText($"Попустили скобку на открытие функции с {lexems[i].start}\n");
-                        step+=2;
+                        richTextBox2.AppendText($"{index}. Попустили скобку на открытие функции с {lexems[i].start}\n");
+                        index++;
+                        step += 2;
                     }
                     else
                     {
-                        richTextBox2.AppendText($"Ожидается символ Открывающей скобки с {lexems[i].start}\n");
+                        richTextBox2.AppendText($"{index}. Ожидается символ Открывающей скобки с {lexems[i].start}\n");
+                        index++;
                         step++;
                         //lexem word = new lexem();
                         //word.st = "function";
                         //lexems.Insert(i, word);
                     }
                 }
-                
+
                 // проверка на return
                 else if (step == 4)
                 {
+
                     if (lexems[i].st == "return")
                     {
                         step++;
@@ -678,22 +712,26 @@ namespace Lablandiya
                     // Проверить на variable
                     else if (lexems[i].key == 7)
                     {
-                        richTextBox2.AppendText($"Попустили слово return с {lexems[i].st}\n");
-                        step+=2;
+                        richTextBox2.AppendText($"{index}. Попустили слово return с {lexems[i].st}\n");
+                        index++;
+                        i--;
+                        step++;
                     }
                     else
                     {
-                        richTextBox2.AppendText($"Ожидается ключевое слово return с {lexems[i].st}\n");
+                        richTextBox2.AppendText($"{index}. Ожидается ключевое слово return с {lexems[i].st}\n");
+                        index++;
                         result = false;
                         //lexem word = new lexem();
                         //word.st = "function";
                         //lexems.Insert(i, word);
                     }
                 }
-               
+
                 // проверка на Number
                 else if (step == 5)
                 {
+                    ch = true;
                     bool isDig = true;
                     for (int j = 0; j < lexems[i].st.Length; j++)
                         if (!Char.IsDigit(lexems[i].st[j]))
@@ -701,111 +739,146 @@ namespace Lablandiya
                             isDig = false;
                             break;
                         }
-                    if (lexems[i].key == 7)
+                    if (lexems[i].key == 7 || isDig == true)
                     {
-                        step++;
+                        //step++;
+
+                        try
+                        {
+                            while (lexems[i].key == 7)
+                            {
+                                //variables.Add(lexems[i].st);
+                                bool check = false;
+                                foreach (string variabl in variables)
+                                {
+                                    if (variabl == lexems[i].st)
+                                    {
+                                        check = true;
+                                    }
+                                }
+
+
+                                for (int j = 0; j < lexems[i].st.Length; j++)
+                                    if (Char.IsDigit(lexems[i].st[j]))
+                                    {
+                                        check = true;
+                                        break;
+                                    }
+
+
+                                if (!check)
+                                {
+                                    richTextBox2.AppendText($"{index}. Переменная не подходит: {lexems[i].st}\n");
+                                    index++;
+                                }
+
+                                i++;
+                                if (lexems[i].key == 6)
+                                    i++;
+                                else if (lexems[i].st == ";")
+                                {
+                                    step++;
+                                    break;
+                                }
+                                else if (lexems[i].key == 7)
+                                {
+                                    richTextBox2.AppendText($"{index}. Ожидается оператор перед: {lexems[i].st}\n");
+                                    index++;
+                                }
+                                else
+                                {
+                                    richTextBox2.AppendText($"{index}. Ожидается ; перед: {lexems[i].st}\n");
+                                    index++;
+                                    i--;
+                                    step++;
+                                    break;
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+
+                            if (lexems[i - 1].key == 6)
+                            {
+                                richTextBox2.AppendText($"{index}. Ожидается переменная перед: {lexems[i - 1].st}\n");
+                                index++;
+                            }
+                            else
+                            {
+                                richTextBox2.AppendText($"{index}. Ожидается ; перед: {lexems[i - 1].st}\n");
+                                index++;
+                            }
+
+                        }
+
                     }
-                    else if (isDig == true)
-                    {
-                        step++;
-                    }
+                    //else if (isDig == true)
+                    //{
+                    //    step++;
+                    //}
                     // Проверить на variable
                     else if (lexems[i].key == 6)
                     {
-                        richTextBox2.AppendText($"Попустили слово число или Имя переменной {lexems[i].st}\n");
-                        step+=2;
+                        richTextBox2.AppendText($"{index}. Попустили число или Имя переменной {lexems[i].st}\n");
+                        index++;
+                        i++;
+                        try
+                        {
+                            while (lexems[i].key == 7)
+                            {
+
+                                i++;
+                                if (lexems[i].key == 6)
+                                    i++;
+                                else if (lexems[i].st == ";")
+                                {
+                                    step++;
+                                    break;
+                                }
+                                else
+                                {
+                                    richTextBox2.AppendText($"{index}. Ожидается ; перед: {lexems[i].st}\n");
+                                    index++;
+                                    i--;
+                                    step++;
+                                    break;
+                                }
+
+
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+
+                            if (lexems[i - 1].key == 6)
+                            {
+                                richTextBox2.AppendText($"{index}. Ожидается переменная перед: {lexems[i - 1].st}\n");
+                                index++;
+                            }
+                            else
+                            {
+                                richTextBox2.AppendText($"{index}. Ожидается ; перед: {lexems[i - 1].st}\n");
+                                index++;
+                            }
+
+                        }
                     }
                     else
                     {
-                        richTextBox2.AppendText($"Ожидается имя переменной или число {lexems[i].st}\n");
+                        richTextBox2.AppendText($"{index}. Ожидается имя переменной или число {lexems[i].st}\n");
+                        index++;
                         result = false;
                         //lexem word = new lexem();
                         //word.st = "function";
                         //lexems.Insert(i, word);
                     }
                 }
-                
-                // проверка на + - / % *
+
+
+                // проверка на }
                 else if (step == 6)
                 {
-                    if (lexems[i].st == "*" || lexems[i].st == "/" || lexems[i].st == "+" || lexems[i].st == "-" || lexems[i].st == "%")
-                    {
-                        step++;
-                    }
-                    // Проверить на variable
-                    else if (lexems[i].key == 7)
-                    {
-                        richTextBox2.AppendText($"Попустили оператор с {lexems[i].st}\n");
-                        step+=2;
-                    }
-                    else
-                    {
-                        richTextBox2.AppendText($"Ожидается оператор {lexems[i].st}\n");
-                        result = false;
-                        //lexem word = new lexem();
-                        //word.st = "function";
-                        //lexems.Insert(i, word);
-                    }
-                }
-                
-                // проверка на Number
-                else if (step == 7)
-                {
-                    bool isDig = true;
-                    for (int j = 0; j < lexems[i].st.Length; j++)
-                        if (!Char.IsDigit(lexems[i].st[j]))
-                        {
-                            isDig = false;
-                            break;
-                        }
-                    if (lexems[i].key == 7)
-                    {
-                        step++;
-                    }
-                    else if (isDig == true)
-                    {
-                        step++;
-                    }
-                    // Проверить на variable
-                    else if (lexems[i].key == 12)
-                    {
-                        richTextBox2.AppendText($"ожидается ; до {lexems[i].st}\n");
-                        step+=2;
-                    }
-                    else
-                    {
-                        richTextBox2.AppendText($"ожидается ; до {lexems[i].st}\n");
-                        result = false;
-                        //lexem word = new lexem();
-                        //word.st = "function";
-                        //lexems.Insert(i, word);
-                    }
-                }
-                
-                // проверка на ;
-                else if (step == 8)
-                {
-                    if (lexems[i].key == 11)
-                    {
-                        step++;
-                    }
-                    else if (lexems[i].key == 5)
-                    {
-                        richTextBox2.AppendText($"Попустили ; до {lexems[i].st}\n");
-                        step += 2;
-                    }
-                    else
-                    {
-                        richTextBox2.AppendText($"Ожидается ; до {lexems[i].st}\n");
-                        result = false;
-                        //lexem word = new lexem();
-                        //word.st = "function";
-                        //lexems.Insert(i, word);
-                    }
-                }
-                // проверка на }
-                else if (step == 9)
-                {
+                    ch = true;
                     if (lexems[i].key == 5)
                     {
                         step++;
@@ -813,12 +886,39 @@ namespace Lablandiya
                     // Проверить на variable
                     else if (lexems[i].st == " ")
                     {
-                        richTextBox2.AppendText($"Попустили конец функции {lexems[i].st}\n");
+                        richTextBox2.AppendText($"{index}. Попустили конец функции {lexems[i].st}\n");
+                        index++;
+                        step += 2;
+                    }
+                    else
+                    {
+                        richTextBox2.AppendText($"{index}. Ожидается конец функции перед {lexems[i].st}\n");
+                        index++;
+                        result = false;
+                        //lexem word = new lexem();
+                        //word.st = "function";
+                        //lexems.Insert(i, word);
+                    }
+                }
+
+
+                else if (step == 7)
+                {
+                    if (lexems[i].key == 12)
+                    {
+                        step++;
+                    }
+                    // Проверить на variable
+                    else if (lexems[i].st == " ")
+                    {
+                        richTextBox2.AppendText($"{index}. Пропустили точку с запятой {lexems[i].st}\n");
+                        index++;
                         step++;
                     }
                     else
                     {
-                        richTextBox2.AppendText($"Ожидается конец функции {lexems[i].st}\n");
+                        richTextBox2.AppendText($"{index}. Пропустили точку с запятой {lexems[i].st}\n");
+                        index++;
                         result = false;
                         //lexem word = new lexem();
                         //word.st = "function";
@@ -826,25 +926,54 @@ namespace Lablandiya
                     }
                 }
             }
-            //Пересобирание строки
-            if (result == false)
-            {
-                //richTextBox1.Clear();
-                //foreach (lexem lex in lexems)
-                //{
-                //    richTextBox1.AppendText(lex.st);
-                //    if (lex.st == "{")
-                //        richTextBox1.AppendText("\n");
-                //    //richTextBox1.Text.Insert(lex.st.i)
-                //    if (lex.st == ";")
-                //        richTextBox1.AppendText("\n");
-                //}
-                
 
+
+
+
+
+
+            if (step == 5 && !ch)
+            {
+                richTextBox2.AppendText($"{index}. После return нет оператора " + '}' + " \n");
+                index++;
+                richTextBox2.AppendText($"{index}. В конце функции нет " + '}' + " \n");
+                index++;
+                richTextBox2.AppendText($"{index}. В конце функции нет ; \n");
+                index++;
             }
-            
+
+
+            if (step == 6 && !ch)
+            {
+                richTextBox2.AppendText($"{index}. В конце функции нет " + '}' + " \n");
+                index++;
+            }
+
+            if (step == 7)
+            {
+                richTextBox2.AppendText($"{index}. В конце функции нет ; \n");
+            }
+            //Пересобирание строки
+            //if (result == false)
+            //{
+            //    richTextBox1.Clear();
+            //    foreach (lexem lex in lexems)
+            //    {
+            //        richTextBox1.AppendText(lex.st);
+            //        if (lex.st == "{")
+            //            richTextBox1.AppendText("\n");
+            //        //richTextBox1.Text.Insert(lex.st.i)
+            //        if (lex.st == ";")
+            //            richTextBox1.AppendText("\n");
+            //    }
+
+
+            //}
+
 
         }
+
+
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -869,6 +998,731 @@ namespace Lablandiya
                 string someText = Clipboard.GetText();
                 richTextBox1.Text = someText;
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void диагностикаИНейтрализацияОшибокToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            richTextBox2.Clear();
+            Dictionary<string, int> a = new Dictionary<string, int>();
+            string str = Regex.Replace(richTextBox1.Text, @"[\r]", " ");
+            string[] t1 = str.Split(' ', '\n', '\t');
+            List<string> t2 = new List<string>();
+            char[] specSimb = { '(', ')', '{', '}', '*', '/', '+', '-', ',', ';' };
+
+
+            foreach (string t1string in t1)
+            {
+                int starti = 0;
+                for (int i = 0; i < t1string.Length; i++)
+                {
+                    if (specSimb.Contains(t1string[i]))
+                    {
+                        if (i - starti != 1 || !((t1string[i] == ')' && t2.Last() == "(") || (t1string[i] == '}' && t2.Last() == "{")))
+                        {
+                            t2.Add(t1string.Substring(starti, i - starti));
+                            starti = i++;
+                        }
+                        t2.Add(t1string.Substring(starti, 1));
+                        starti = i++;
+                    }
+                }
+
+
+                if (t1string.Length != starti)
+                    t2.Add(t1string.Substring(starti, t1string.Length - starti));
+            }
+            while (t2.Remove(String.Empty)) ;
+            List<lexem> lexems = new List<lexem>();
+            List<string> variables = new List<string>();
+            bool test = true;
+            int start = 0;
+            int numbers = 1;
+            int index = 1;
+
+
+            foreach (string st in t2.ToArray())
+            {
+
+
+                int end = start + st.Length;
+                string type = "";
+                int key = check(st);
+                if (key == 0)
+                {
+                    richTextBox2.Text = richTextBox2.Text + "Error: " + st + "\n";
+                    test = false;
+                }
+
+                if (key == 1)
+                {
+                    if (a.ContainsKey("keyword"))
+                    {
+                        a["keyword"] = a["keyword"] + 1;
+                    }
+                    else
+                    {
+                        a["keyword"] = 1;
+                    }
+                    type = "Ключевое слово";
+                }
+                else if (key == 2)
+                {
+                    if (a.ContainsKey("("))
+                    {
+                        a["("] = a["("] + 1;
+                    }
+                    else
+                    {
+                        a["("] = 1;
+                    }
+                    type = "(";
+                }
+                else if (key == 3)
+                {
+                    if (a.ContainsKey(")"))
+                    {
+                        a[")"] = a[")"] + 1;
+                    }
+                    else
+                    {
+                        a[")"] = 1;
+                    }
+                    type = "(";
+                }
+                else if (key == 4)
+                {
+                    if (a.ContainsKey("{"))
+                    {
+                        a["{"] = a["{"] + 1;
+                    }
+                    else
+                    {
+                        a["{"] = 1;
+                    }
+                    type = "{";
+
+                }
+                else if (key == 5)
+                {
+                    if (a.ContainsKey("}"))
+                    {
+                        a["}"] = a["}"] + 1;
+                    }
+                    else
+                    {
+                        a["}"] = 1;
+                    }
+                    type = "}";
+
+                }
+
+                else if (key == 7)
+                {
+                    if (a.ContainsKey("variable"))
+                    {
+                        a["variable"] = a["variable"] + 1;
+                    }
+                    else
+                    {
+                        a["variable"] = 1;
+                    }
+                    type = "variable";
+
+                }
+
+                else if (key == 6)
+                {
+                    if (a.ContainsKey("operator"))
+                    {
+                        a["operator"] = a["operator"] + 1;
+                    }
+                    else
+                    {
+                        a["operator"] = 1;
+                    }
+                    type = "operator";
+
+                }
+                else if (key == 8)
+                {
+                    if (a.ContainsKey("_"))
+                    {
+                        a["_"] = a["_"] + 1;
+                    }
+                    else
+                    {
+                        a["_"] = 1;
+                    }
+                    type = "_";
+
+                }
+                else if (key == 9)
+                {
+                    if (a.ContainsKey("Перенос строки"))
+                    {
+                        a["Перенос строки"] = a["Перенос строки"] + 1;
+                    }
+                    else
+                    {
+                        a["Перенос строки"] = 1;
+                    }
+                    type = "Перенос строки";
+                }
+                else if (key == 10)
+                {
+                    if (a.ContainsKey("Табуляция"))
+                    {
+                        a["Табуляция"] = a["Табуляция"] + 1;
+                    }
+                    else
+                    {
+                        a["Табуляция"] = 1;
+                    }
+                }
+                //out
+                //richTextBox2.Text = richTextBox2.Text + $"Code: {key} - {type} - {st} - c {start} до {end} символы\n";
+                lexem word = new lexem { key = key, type = type, st = st, start = start, end = end };
+                lexems.Add(word);
+                start = end;
+                numbers++;
+            }
+
+            int step = 0;
+            bool result = true;
+            bool ch = false;
+
+
+            //bool chError = false;
+            for (int i = 0; i < lexems.Count; i++)
+            {
+                if (lexems[i].key >= 8 && lexems[i].key <= 10)
+                    continue;
+
+
+                // проверка на Function
+                if (step == 0)
+                {
+                    if (lexems[i].st == "function")
+                    {
+                        step++;
+                    }
+                    else if (lexems[i].st == "(")
+                    {
+                        richTextBox2.AppendText($"{index}. Попустили слово function перед {lexems[i].st}\n");
+                        step += 2;
+                        index++;
+
+                        lexem word = new lexem();
+                        word.st = "function";
+                        lexems.Insert(i, word);
+                        result = false;
+
+                    }
+                    else
+                    {
+                        richTextBox2.AppendText($"{index}. Ожидается ключевое слово function вместо {lexems[i].st}\n");
+                        step++;
+                        index++;
+                        lexems.RemoveAt(i);
+                        lexem word = new lexem();
+                        word.st = "function";
+                        lexems.Insert(i, word);
+                        result = false;
+                    }
+                }
+
+
+                // проверка на (
+                else if (step == 1)
+                {
+                    if (lexems[i].key == 2)
+                    {
+                        step++;
+                    }
+                    else if (lexems[i].key == 7)
+                    {
+                        richTextBox2.AppendText($"{index}. Попустили символ ( перед {lexems[i].st}\n");
+
+                        lexem word = new lexem();
+                        word.st = "(";
+                        lexems.Insert(i, word);
+                        result = false;
+
+
+
+                        step++;
+                        index++;
+                    }
+                    else
+                    {
+
+                        lexems.RemoveAt(i);
+                        lexem word = new lexem();
+                        word.st = "(";
+                        lexems.Insert(i, word);
+                        result = false;
+
+                        richTextBox2.AppendText($"{index}. Ожидается (  до {lexems[i].st}\n");
+                        index++;
+                        step++;
+
+
+                    }
+                }
+
+                // проверка на Number
+                else if (step == 2)
+                {
+                    if (lexems[i].key == 3)
+                    {
+                        step++;
+                    }
+                    else if (lexems[i].key == 7)
+                    {
+                        while (lexems[i].key == 7)
+                        {
+                            variables.Add(lexems[i].st);
+                            i++;
+                            if (lexems[i].st == ",")
+                                i++;
+                            else if (lexems[i].st == ")")
+                            {
+                                step++;
+                                break;
+                            }
+                            else
+                            {
+                                richTextBox2.AppendText($"{index}. Ожидается ) перед: {lexems[i].st}\n");
+
+                                lexem word = new lexem();
+                                word.st = ")";
+                                lexems.Insert(i, word);
+                                result = false;
+
+                                index++;
+                                step++;
+
+                                break;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        richTextBox2.AppendText($"{index}. Ожидается Имя переменной перед {lexems[i].st}\n");
+                        index++;
+                        step++;
+                    }
+                }
+
+                // проверка на {
+                else if (step == 3)
+                {
+
+                    if (lexems[i].key == 4)
+                    {
+                        step++;
+                    }
+                    // Проверить на variable
+                    else if (lexems[i].st == "return")
+                    {
+                        richTextBox2.AppendText($"{index}. Попустили скобку на открытие функции с {lexems[i].start}\n");
+
+
+
+                        lexem word = new lexem();
+                        word.st = "{";
+                        lexems.Insert(i, word);
+                        result = false;
+
+                        index++;
+                        step++;
+                    }
+                    else
+                    {
+                        richTextBox2.AppendText($"{index}. Ожидается символ Открывающей скобки перед {lexems[i].start}\n");
+
+                        lexems.RemoveAt(i);
+                        lexem word = new lexem();
+                        word.st = "{";
+                        lexems.Insert(i, word);
+                        result = false;
+
+
+                        index++;
+                        step++;
+                        //lexem word = new lexem();
+                        //word.st = "function";
+                        //lexems.Insert(i, word);
+                    }
+                }
+
+                // проверка на return
+                else if (step == 4)
+                {
+
+                    if (lexems[i].st == "return")
+                    {
+                        step++;
+                    }
+                    // Проверить на variable
+                    else if (lexems[i].key == 7)
+                    {
+                        richTextBox2.AppendText($"{index}. Попустили слово return перед {lexems[i].st}\n");
+
+                        lexem word = new lexem();
+                        word.st = "return";
+                        lexems.Insert(i, word);
+                        result = false;
+
+                        index++;
+                        i--;
+                        step++;
+                    }
+                    else
+                    {
+                        richTextBox2.AppendText($"{index}. Ожидается ключевое слово return перед {lexems[i].st}\n");
+
+
+                        index++;
+
+                        lexems.RemoveAt(i);
+                        lexem word = new lexem();
+                        word.st = "return";
+                        lexems.Insert(i, word);
+                        result = false;
+                    }
+                }
+
+                // проверка на Number
+                else if (step == 5)
+                {
+                    ch = true;
+                    bool isDig = true;
+                    for (int j = 0; j < lexems[i].st.Length; j++)
+                        if (!Char.IsDigit(lexems[i].st[j]))
+                        {
+                            isDig = false;
+                            break;
+                        }
+                    if (lexems[i].key == 7 || isDig == true)
+                    {
+                        //step++;
+
+                        try
+                        {
+                            while (lexems[i].key == 7)
+                            {
+                                //variables.Add(lexems[i].st);
+                                bool check = false;
+                                foreach (string variabl in variables)
+                                {
+                                    if (variabl == lexems[i].st)
+                                    {
+                                        check = true;
+                                    }
+                                }
+
+
+                                for (int j = 0; j < lexems[i].st.Length; j++)
+                                    if (Char.IsDigit(lexems[i].st[j]))
+                                    {
+                                        check = true;
+                                        break;
+                                    }
+
+
+                                if (!check)
+                                {
+                                    richTextBox2.AppendText($"{index}. Переменная не подходит: {lexems[i].st}\n");
+
+
+                                    index++;
+                                }
+
+                                i++;
+                                if (lexems[i].key == 6)
+                                    i++;
+                                else if (lexems[i].st == ";")
+                                {
+                                    step++;
+                                    break;
+                                }
+                                else if (lexems[i].key == 7)
+                                {
+                                    richTextBox2.AppendText($"{index}. Ожидается оператор перед: {lexems[i].st}\n");
+
+
+                                    index++;
+                                }
+                                else
+                                {
+                                    richTextBox2.AppendText($"{index}. Ожидается ; перед: {lexems[i].st}\n");
+
+                                    lexem word = new lexem();
+                                    word.st = ";";
+                                    lexems.Insert(i, word);
+                                    result = false;
+
+
+                                    index++;
+                                    step++;
+                                    break;
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+
+                            if (lexems[i - 1].key == 6)
+                            {
+                                richTextBox2.AppendText($"{index}. Ожидается переменная перед: {lexems[i - 1].st}\n");
+                                index++;
+                            }
+                            else
+                            {
+                                richTextBox2.AppendText($"{index}. Ожидается ; перед: {lexems[i - 1].st}\n");
+
+                                lexem word = new lexem();
+                                word.st = ";";
+                                lexems.Insert(i, word);
+                                result = false;
+
+                                index++;
+                            }
+
+                        }
+
+                    }
+                    //else if (isDig == true)
+                    //{
+                    //    step++;
+                    //}
+                    // Проверить на variable
+                    else if (lexems[i].key == 6)
+                    {
+                        richTextBox2.AppendText($"{index}. Попустили число или Имя переменной {lexems[i].st}\n");
+                        index++;
+                        i++;
+                        try
+                        {
+                            while (lexems[i].key == 7)
+                            {
+
+                                i++;
+                                if (lexems[i].key == 6)
+                                    i++;
+                                else if (lexems[i].st == ";")
+                                {
+                                    step++;
+                                    break;
+                                }
+                                else
+                                {
+                                    richTextBox2.AppendText($"{index}. Ожидается ; перед: {lexems[i].st}\n");
+
+                                    lexem word = new lexem();
+                                    word.st = ";";
+                                    lexems.Insert(i, word);
+                                    result = false;
+                                    index++;
+                                    step++;
+                                    break;
+                                }
+
+
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+
+                            if (lexems[i - 1].key == 6)
+                            {
+                                richTextBox2.AppendText($"{index}. Ожидается переменная перед: {lexems[i - 1].st}\n");
+                                index++;
+                            }
+                            else
+                            {
+                                richTextBox2.AppendText($"{index}. Ожидается ; перед: {lexems[i - 1].st}\n");
+
+                                lexem word = new lexem();
+                                word.st = ";";
+                                lexems.Insert(i, word);
+                                result = false;
+
+                                index++;
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        richTextBox2.AppendText($"{index}. Ожидается имя переменной или число {lexems[i].st}\n");
+                        index++;
+                        result = false;
+                        //lexem word = new lexem();
+                        //word.st = "function";
+                        //lexems.Insert(i, word);
+                    }
+                }
+
+
+                // проверка на }
+                else if (step == 6)
+                {
+                    ch = true;
+                    if (lexems[i].key == 5)
+                    {
+                        step++;
+                    }
+                    // Проверить на variable
+                    else if (lexems[i].st == " ")
+                    {
+                        richTextBox2.AppendText($"{index}. Попустили конец функции {lexems[i].st}\n");
+
+                        lexem word = new lexem();
+                        word.st = "}";
+                        lexems.Insert(i, word);
+                        result = false;
+
+                        index++;
+                        step++;
+                    }
+                    else
+                    {
+                        richTextBox2.AppendText($"{index}. Ожидается конец функции перед {lexems[i].st}\n");
+
+                        lexems.RemoveAt(i);
+                        lexem word = new lexem();
+                        word.st = "}";
+                        lexems.Insert(i, word);
+                        result = false;
+
+                        index++;
+                        result = false;
+                        //lexem word = new lexem();
+                        //word.st = "function";
+                        //lexems.Insert(i, word);
+                    }
+                }
+
+
+                else if (step == 7)
+                {
+                    if (lexems[i].key == 12)
+                    {
+                        step++;
+                    }
+                    // Проверить на variable
+                    else if (lexems[i].st == " ")
+                    {
+                        richTextBox2.AppendText($"{index}. Пропустили точку с запятой {lexems[i].st}\n");
+
+                        lexem word = new lexem();
+                        word.st = ";";
+                        lexems.Insert(i, word);
+                        result = false;
+
+                        index++;
+                        step++;
+                    }
+                    else
+                    {
+                        richTextBox2.AppendText($"{index}. Пропустили точку с запятой {lexems[i].st}\n");
+                        index++;
+                        result = false;
+
+
+                        lexem word = new lexem();
+                        word.st = ";";
+                        lexems.Insert(i, word);
+                        result = false;
+                        //lexem word = new lexem();
+                        //word.st = "function";
+                        //lexems.Insert(i, word);
+                    }
+                }
+            }
+
+
+
+
+
+
+            if (step == 5 && !ch)
+            {
+
+                lexem word = new lexem();
+                word.st = "}";
+                lexems.Add(word);
+                word = new lexem();
+                word.st = ";";
+                lexems.Add(word);
+
+                richTextBox2.AppendText($"{index}. После return нет оператора " + '}' + " \n");
+                index++;
+                richTextBox2.AppendText($"{index}. В конце функции нет " + '}' + " \n");
+                index++;
+                richTextBox2.AppendText($"{index}. В конце функции нет ; \n");
+                index++;
+            }
+
+
+            if (step == 6 && !ch)
+            {
+                richTextBox2.AppendText($"{index}. В конце функции нет " + '}' + " \n");
+
+                lexem word = new lexem();
+                word.st = "}";
+                lexems.Add(word);
+
+                word = new lexem();
+                word.st = ";";
+                lexems.Add(word);
+
+                index++;
+            }
+
+            if (step == 7)
+            {
+
+                lexem word = new lexem();
+                word.st = ";";
+                lexems.Add(word);
+                richTextBox2.AppendText($"{index}. В конце функции нет ; \n");
+            }
+
+            richTextBox2.AppendText($"{result} \n");
+
+
+            //Пересобирание строки
+            if (result == false)
+            {
+                richTextBox2.Clear();
+                foreach (lexem lex in lexems)
+                {
+                    richTextBox2.AppendText(lex.st);
+                    if (lex.st == "{")
+                        richTextBox2.AppendText("\n ");
+                    if (lex.st == "return")
+                        richTextBox2.AppendText(" ");
+                    if (lex.key == 7)
+                        richTextBox2.AppendText(" ");
+                    if (lex.key == 6)
+                        richTextBox2.AppendText(" ");
+                    //richTextBox1.Text.Insert(lex.st.i)
+                    if (lex.st == ";")
+                        richTextBox2.AppendText("\n");
+                }
+
+
+            }
+
+
         }
     }
 }

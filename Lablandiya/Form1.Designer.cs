@@ -162,49 +162,49 @@ namespace Lablandiya
             // отменитьToolStripMenuItem
             // 
             this.отменитьToolStripMenuItem.Name = "отменитьToolStripMenuItem";
-            this.отменитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.отменитьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.отменитьToolStripMenuItem.Text = "Отменить";
             this.отменитьToolStripMenuItem.Click += new System.EventHandler(this.отменитьToolStripMenuItem_Click);
             // 
             // повторитьToolStripMenuItem
             // 
             this.повторитьToolStripMenuItem.Name = "повторитьToolStripMenuItem";
-            this.повторитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.повторитьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.повторитьToolStripMenuItem.Text = "Повторить";
             this.повторитьToolStripMenuItem.Click += new System.EventHandler(this.повторитьToolStripMenuItem_Click);
             // 
             // вырезатьToolStripMenuItem
             // 
             this.вырезатьToolStripMenuItem.Name = "вырезатьToolStripMenuItem";
-            this.вырезатьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.вырезатьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.вырезатьToolStripMenuItem.Text = "Вырезать";
             this.вырезатьToolStripMenuItem.Click += new System.EventHandler(this.вырезатьToolStripMenuItem_Click);
             // 
             // копироватьToolStripMenuItem
             // 
             this.копироватьToolStripMenuItem.Name = "копироватьToolStripMenuItem";
-            this.копироватьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.копироватьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.копироватьToolStripMenuItem.Text = "Копировать";
             this.копироватьToolStripMenuItem.Click += new System.EventHandler(this.копироватьToolStripMenuItem_Click);
             // 
             // вставитьToolStripMenuItem
             // 
             this.вставитьToolStripMenuItem.Name = "вставитьToolStripMenuItem";
-            this.вставитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.вставитьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.вставитьToolStripMenuItem.Text = "Вставить";
             this.вставитьToolStripMenuItem.Click += new System.EventHandler(this.вставитьToolStripMenuItem_Click);
             // 
             // удалитьToolStripMenuItem
             // 
             this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.удалитьToolStripMenuItem.Text = "Удалить";
             this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
             // 
             // выделитьВсеToolStripMenuItem
             // 
             this.выделитьВсеToolStripMenuItem.Name = "выделитьВсеToolStripMenuItem";
-            this.выделитьВсеToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.выделитьВсеToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.выделитьВсеToolStripMenuItem.Text = "Выделить все";
             this.выделитьВсеToolStripMenuItem.Click += new System.EventHandler(this.выделитьВсеToolStripMenuItem_Click);
             // 
@@ -252,6 +252,7 @@ namespace Lablandiya
             this.диагностикаИНейтрализацияОшибокToolStripMenuItem.Name = "диагностикаИНейтрализацияОшибокToolStripMenuItem";
             this.диагностикаИНейтрализацияОшибокToolStripMenuItem.Size = new System.Drawing.Size(363, 26);
             this.диагностикаИНейтрализацияОшибокToolStripMenuItem.Text = "Диагностика и нейтрализация ошибок";
+            this.диагностикаИНейтрализацияОшибокToolStripMenuItem.Click += new System.EventHandler(this.диагностикаИНейтрализацияОшибокToolStripMenuItem_Click);
             // 
             // тестовыйПримерToolStripMenuItem
             // 
