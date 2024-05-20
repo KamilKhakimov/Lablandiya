@@ -89,11 +89,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Картинки\free-icon-floppy-disk-2344313.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="Картинки\1.1.png" />
     <Content Include="Картинки\1.png" />
+    <Content Include="Картинки\2.1.png" />
     <Content Include="Картинки\2.png" />
+    <Content Include="Картинки\3.1.png" />
+    <Content Include="Картинки\3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
