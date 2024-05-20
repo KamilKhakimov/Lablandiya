@@ -22,21 +22,9 @@ namespace Lablandiya
             fileItem.DropDownItems.Add("Создать");
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
+        private void Form1_Load(object sender, EventArgs e) { }
 
-        }
-
-        private void menuStrip4_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void menuStrip3_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
+        private void menuStrip4_ItemClicked(object sender, ToolStripItemClickedEventArgs e){ }
         private void button1_Click(object sender, EventArgs e)
         {
             System.IO.FileStream file;
@@ -49,17 +37,6 @@ namespace Lablandiya
                 fs.Close();
             }
         }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             System.IO.FileStream file;
@@ -76,9 +53,6 @@ namespace Lablandiya
                 fs.Close();
             }
         }
-
-
-
         private void richTextBox1_DragEnter(object sender, DragEventArgs e)
         {
             // Проверка, что перетаскивается файл
@@ -98,17 +72,6 @@ namespace Lablandiya
                 // Добавление текста в элемент управления
                 richTextBox1.Text = file;
             }
-        }
-        // Увеличение и уменьшение текста
-        public void IncreaseFontIOText()
-        {
-            ChangeFont(this.richTextBox1, 1.2f);
-            ChangeFont(this.richTextBox1, 1.2f);
-        }
-        public void DecreaseFontIOText()
-        {
-            ChangeFont(this.richTextBox1, 10f / 12f);
-            ChangeFont(this.richTextBox1, 10f / 12f);
         }
         void ChangeFont(RichTextBox richTextBox, float modify)
         {
@@ -147,9 +110,7 @@ namespace Lablandiya
                 richTextBox1.Text = Encoding.Default.GetString(buffer);
                 fs.Close();
             }
-
         }
-
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try
@@ -160,9 +121,7 @@ namespace Lablandiya
                 fs.Close();
             }
             catch (Exception)
-            {
-
-            }
+            {}
         }
 
         private void сохранитьКакToolStripMenuItem_Click(object sender, EventArgs e)
@@ -179,12 +138,10 @@ namespace Lablandiya
                 fs.Close();
             }
         }
-
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
         private void вызовСправкиToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
@@ -211,12 +168,10 @@ namespace Lablandiya
         {
             if (Clipboard.ContainsText() == true)
             {
-                //Извлекаем (точнее копируем) его и сохраняем в переменную
                 string someText = Clipboard.GetText();
                 richTextBox1.Text = someText;
             }
         }
-
         private void копироватьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(richTextBox1.Text);
@@ -227,12 +182,10 @@ namespace Lablandiya
             Clipboard.SetText(richTextBox1.Text);
             richTextBox1.Text = "";
         }
-
         private void отменитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             richTextBox1.Undo();
         }
-
         private void button3_Click(object sender, EventArgs e)
         {
             try
@@ -243,11 +196,8 @@ namespace Lablandiya
                 fs.Close();
             }
             catch (Exception)
-            {
-
-            }
+            { }
         }
-
         private void button7_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(richTextBox1.Text);
@@ -269,7 +219,6 @@ namespace Lablandiya
         {
             richTextBox1.Redo();
         }
-
         public void CheckClose()
         {
             DialogResult result = MessageBox.Show("Сохранить изменения в файле?", "Неприменённые изменения", MessageBoxButtons.YesNoCancel);
@@ -368,10 +317,7 @@ namespace Lablandiya
                         }
                 }
             }
-            else
-            {
-                return 11;
-            }
+            return 11;
         }
         struct lexem
         {
@@ -390,7 +336,6 @@ namespace Lablandiya
             List<string> t2 = new List<string>();
             char[] specSimb = { '(', ')', '{', '}', '*', '/', '+', '-', ',', ';' };
 
-
             foreach (string t1string in t1)
             {
                 int starti = 0;
@@ -407,8 +352,6 @@ namespace Lablandiya
                         starti = i++;
                     }
                 }
-
-
                 if (t1string.Length != starti)
                     t2.Add(t1string.Substring(starti, t1string.Length - starti));
             }
@@ -420,20 +363,16 @@ namespace Lablandiya
             int numbers = 1;
             int index = 1;
 
-
             foreach (string st in t2.ToArray())
             {
-
 
                 int end = start + st.Length;
                 string type = "";
                 int key = check(st);
                 if (key == 0)
                 {
-                    richTextBox2.Text = richTextBox2.Text + "Error: " + st + "\n";
                     test = false;
                 }
-
                 if (key == 1)
                 {
                     if (a.ContainsKey("keyword"))
@@ -496,7 +435,6 @@ namespace Lablandiya
                     type = "}";
 
                 }
-
                 else if (key == 7)
                 {
                     if (a.ContainsKey("variable"))
@@ -508,9 +446,7 @@ namespace Lablandiya
                         a["variable"] = 1;
                     }
                     type = "variable";
-
                 }
-
                 else if (key == 6)
                 {
                     if (a.ContainsKey("operator"))
@@ -522,7 +458,6 @@ namespace Lablandiya
                         a["operator"] = 1;
                     }
                     type = "operator";
-
                 }
                 else if (key == 8)
                 {
@@ -560,8 +495,6 @@ namespace Lablandiya
                         a["Табуляция"] = 1;
                     }
                 }
-                //out
-                //richTextBox2.Text = richTextBox2.Text + $"Code: {key} - {type} - {st} - c {start} до {end} символы\n";
                 lexem word = new lexem { key = key, type = type, st = st, start = start, end = end };
                 lexems.Add(word);
                 start = end;
@@ -571,15 +504,10 @@ namespace Lablandiya
             int step = 0;
             bool result = true;
             bool ch = false;
-
-            if (!test)
-                return;
-            //bool chError = false;
             for (int i = 0; i < lexems.Count; i++)
             {
                 if (lexems[i].key >= 8 && lexems[i].key <= 10)
                     continue;
-
 
                 // проверка на Function
                 if (step == 0)
@@ -599,13 +527,8 @@ namespace Lablandiya
                         richTextBox2.AppendText($"{index}. Ожидается ключевое слово function вместо {lexems[i].st}\n");
                         step++;
                         index++;
-                        //lexem word = new lexem();
-                        //word.st = "function";
-                        //lexems.Insert(i, word);
                     }
                 }
-
-
                 // проверка на (
                 else if (step == 1)
                 {
@@ -627,7 +550,6 @@ namespace Lablandiya
                         step++;
                     }
                 }
-
                 // проверка на Number
                 else if (step == 2)
                 {
@@ -665,7 +587,6 @@ namespace Lablandiya
                         step++;
                     }
                 }
-
                 // проверка на {
                 else if (step == 3)
                 {
@@ -686,12 +607,8 @@ namespace Lablandiya
                         richTextBox2.AppendText($"{index}. Ожидается символ Открывающей скобки с {lexems[i].start}\n");
                         index++;
                         step++;
-                        //lexem word = new lexem();
-                        //word.st = "function";
-                        //lexems.Insert(i, word);
                     }
                 }
-
                 // проверка на return
                 else if (step == 4)
                 {
@@ -713,14 +630,44 @@ namespace Lablandiya
                         richTextBox2.AppendText($"{index}. Ожидается ключевое слово return с {lexems[i].st}\n");
                         index++;
                         result = false;
-                        //lexem word = new lexem();
-                        //word.st = "function";
-                        //lexems.Insert(i, word);
                     }
                 }
+                else if(step == 5)
+                {
+                    int tmp = i;
 
+                    int open = 0, close = 0;
+                    try
+                    {
+                        while (i < lexems.Count && lexems[i].st != ";")
+                        {
+                            if (lexems[i].st == "(")
+                                open++;
+                            if (lexems[i].st == ")")
+                                close++;
+                            i++;
+                        }
+                    }
+                    catch (IndexOutOfRangeException ex)
+                    {
+                        richTextBox2.AppendText($"{index++}. Пропущен символ ; \n");
+                    }
+
+                    if (open > close)
+                    {
+                        richTextBox2.AppendText($"{index++}. В варажении открвыающихся скобок больше закрывающихся на {open-close}\n");
+                        return;
+                    }
+                    else if(close> open)
+                    {
+                        richTextBox2.AppendText($"{index++}. В варажении закрывающихся скобок больше открывающихся на {close - open}\n");
+                        return;
+                    }
+                    i = tmp;
+                    step++;
+                }
                 // проверка на Number
-                else if (step == 5)
+                else if (step == 6)
                 {
                     ch = true;
                     bool isDig = true;
@@ -732,13 +679,10 @@ namespace Lablandiya
                         }
                     if (lexems[i].key == 7 || isDig == true)
                     {
-                        //step++;
-
                         try
                         {
                             while (lexems[i].key == 7)
                             {
-                                //variables.Add(lexems[i].st);
                                 bool check = false;
                                 foreach (string variabl in variables)
                                 {
@@ -748,14 +692,12 @@ namespace Lablandiya
                                     }
                                 }
 
-
                                 for (int j = 0; j < lexems[i].st.Length; j++)
                                     if (Char.IsDigit(lexems[i].st[j]))
                                     {
                                         check = true;
                                         break;
                                     }
-
 
                                 if (!check)
                                 {
@@ -771,6 +713,8 @@ namespace Lablandiya
                                     step++;
                                     break;
                                 }
+                                else if (lexems[i].key == 3)
+                                    continue;
                                 else if (lexems[i].key == 7)
                                 {
                                     richTextBox2.AppendText($"{index}. Ожидается оператор перед: {lexems[i].st}\n");
@@ -788,7 +732,6 @@ namespace Lablandiya
                         }
                         catch (Exception ex)
                         {
-
                             if (lexems[i - 1].key == 6)
                             {
                                 richTextBox2.AppendText($"{index}. Ожидается переменная перед: {lexems[i - 1].st}\n");
@@ -799,18 +742,13 @@ namespace Lablandiya
                                 richTextBox2.AppendText($"{index}. Ожидается ; перед: {lexems[i - 1].st}\n");
                                 index++;
                             }
-
                         }
-
                     }
-                    //else if (isDig == true)
-                    //{
-                    //    step++;
-                    //}
-                    // Проверить на variable
+                    else if (lexems[i].st == ";")
+                        step++;
                     else if (lexems[i].key == 6)
                     {
-                        richTextBox2.AppendText($"{index}. Попустили число или Имя переменной {lexems[i].st}\n");
+                        //richTextBox2.AppendText($"{index}. Попустили число или Имя переменной {lexems[i].st}\n");
                         index++;
                         i++;
                         try
@@ -834,13 +772,10 @@ namespace Lablandiya
                                     step++;
                                     break;
                                 }
-
-
                             }
                         }
                         catch (Exception ex)
                         {
-
                             if (lexems[i - 1].key == 6)
                             {
                                 richTextBox2.AppendText($"{index}. Ожидается переменная перед: {lexems[i - 1].st}\n");
@@ -851,7 +786,6 @@ namespace Lablandiya
                                 richTextBox2.AppendText($"{index}. Ожидается ; перед: {lexems[i - 1].st}\n");
                                 index++;
                             }
-
                         }
                     }
                     else
@@ -859,15 +793,10 @@ namespace Lablandiya
                         richTextBox2.AppendText($"{index}. Ожидается имя переменной или число {lexems[i].st}\n");
                         index++;
                         result = false;
-                        //lexem word = new lexem();
-                        //word.st = "function";
-                        //lexems.Insert(i, word);
                     }
                 }
-
-
                 // проверка на }
-                else if (step == 6)
+                else if (step == 7)
                 {
                     ch = true;
                     if (lexems[i].key == 5)
@@ -886,13 +815,8 @@ namespace Lablandiya
                         richTextBox2.AppendText($"{index}. Ожидается конец функции перед {lexems[i].st}\n");
                         index++;
                         result = false;
-                        //lexem word = new lexem();
-                        //word.st = "function";
-                        //lexems.Insert(i, word);
                     }
                 }
-
-
                 else if (step == 7)
                 {
                     if (lexems[i].key == 12)
@@ -911,13 +835,9 @@ namespace Lablandiya
                         richTextBox2.AppendText($"{index}. Пропустили точку с запятой {lexems[i].st}\n");
                         index++;
                         result = false;
-                        //lexem word = new lexem();
-                        //word.st = "function";
-                        //lexems.Insert(i, word);
                     }
                 }
             }
-
             if (step == 5 && !ch)
             {
                 richTextBox2.AppendText($"{index}. После return нет оператора " + '}' + " \n");
@@ -927,41 +847,33 @@ namespace Lablandiya
                 richTextBox2.AppendText($"{index}. В конце функции нет ; \n");
                 index++;
             }
-
-
             if (step == 6 && !ch)
             {
                 richTextBox2.AppendText($"{index}. В конце функции нет " + '}' + " \n");
                 index++;
             }
-
             if (step == 7)
             {
                 richTextBox2.AppendText($"{index}. В конце функции нет ; \n");
                 index++;
             }
-            
-            if(richTextBox2.Text == "")
+            if (richTextBox2.Text == "")
             {
                 richTextBox2.AppendText("Ошибок не обнаруженно");
             }
         }
-
         private void button4_Click(object sender, EventArgs e)
         {
             richTextBox1.Undo();
         }
-
         private void button5_Click(object sender, EventArgs e)
         {
             richTextBox1.Redo();
         }
-
         private void button6_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(richTextBox1.Text);
         }
-
         private void button8_Click(object sender, EventArgs e)
         {
             if (Clipboard.ContainsText() == true)
@@ -970,6 +882,85 @@ namespace Lablandiya
                 string someText = Clipboard.GetText();
                 richTextBox1.Text = someText;
             }
+        }
+        private void постановкаЗадачиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 form = new Form2();
+            form.Text = "Постановка задачи";
+            form.richTextBox1.Text = "Функции в языке программирования JavaScript имеют различную реализацию написания, в данном случае используется создание функции, которая работает с цифрами и переменными. Функция начинается с ключевого  слова “function”, далее передаются переменные внутри скобок: (“number” - переменная), с помощью ключевого слова “return” возвращается значение. Над возвращаемыми значениями можно произвести следующие операции: +, -, /, *, %. Так же помимо переменных могут использоваться числа типа int.";
+            form.Show();
+        }
+        private void грамматикаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 form = new Form2();
+            form.Text = "Грамматика";
+            form.richTextBox1.Text = "1.FUNCTION> -> ‘function’ OPEN. \n2.OPEN-> ‘(’ ARGUMENTS \n3.ARGUMENTS-> ‘)’ OPENFUNC | letter ARGUMENTSREM \n4.ARGUMENTSREM →  letter ARGUMENTSREM | ‘,’ ARGUMENTS \n5.OPENFUNC-> ‘{’ RETURN \n6.RETURN-> ‘return’ ARITHEXPR ‘;’  CLOSEFUNC \n7.ARITHEXPR -> TA \n8.A -> E | ‘+’ TA | ‘-’TA \n9.T -> OB \n10.B -> E | ‘*’OB| ‘/’ OB \n11. O -> num | id | ‘(’ ARITHEXPR ‘)’ \n12.CLOSEFUNC -> ‘}’ END \n13.END -> ‘;’ \nnum → digit{digit}" +
+                "num → digit{digit} \ndigit → 0|...|9 \nid → letter{letter} \nletter → A|...|Z|a|...|z \nZ = FUNCTION – начальный нетерминальный символ \nVT = {(, ), {, }, , , ;, A,…,Z, a,…,z, 0...9, +, -, *, /} - словарь терминальных символов \nVN = {FUNCTION, OPEN, ARGUMENTS, ARGUMENTSREM, OPENFUNC, RETURN, ARITHEXPR, A, T, B, O, CLOSEFUNC, END} – словарь нетерминальных символов";
+            form.Show();
+        }
+
+        private void классификацияГрамматикиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 form = new Form2();
+            form.Text = "Классификация грамматики";
+            form.richTextBox1.Text = "Н. Хомский выделил четыре класса грамматик: грамматики нулевого типа, контекстно-зависимые, контекстно-свободные и автоматные грамматики. Вид грамматики определяется исходя из формы записи ее правил. \nСогласно приведённым выше правилам, грамматика G[FUNCTION] является  контекстно-свободной грамматикой.";
+            form.Show();
+        }
+
+        private void методАнализаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 form = new Form2();
+            form.Text = "Метод анализа";
+            form.richTextBox1.Text = "Так как данная грамматика относится к классу контекстно-свободных, анализ реализован методом рекурсивного спуска. Идея метода заключается в том, что каждому нетерминалу ставится в соответствии, программная функция которая распознает цепочку, порождённую этим нетерминалом. Эти функции вызываются в соответствии с правилами грамматики и иногда вызывают сами себя.Поэтому для реализации необходимо выбрать язык С#.";
+            form.Show();
+        }
+
+        private void тестовыйПримерToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 form = new Form2();
+            form.Text = "Тестовый пример";
+            form.richTextBox1.Text = "function (number) { \n return number * number; \n};";
+            form.Show();
+        }
+
+        private void списокЛитературыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 form = new Form2();
+            form.Text = "Список летиратуры";
+            form.richTextBox1.Text = "1.Теория формальных языков и компиляторов [Электронный ресурс]/ Электрон. дан. URL: https://dispace.edu.nstu.ru/didesk/course/show/8594, свободный. Яз.рус. (дата обращения 08.04.2024). \n2.Gries D.Designing Compilers for Digital Computers. New York, Jhon Wiley, 1971. 493 p. \n3.Основы JavaScript | Создание функции[Электронный ресурс] / Электрон.дан. \nURL: https://metanit.com/php/tutorial/2.4.php, свободный. Яз.рус. (дата обращения 12.03.2024). \n4.Шорников Ю.В.Теория и практика языковых процессоров : учеб.пособие / Ю.В.Шорников. – Новосибирск: Изд - во НГТУ, 2004.";
+            form.Show();
+        }
+
+        private void исходныйКодПрограммыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form2 form = new Form2();
+            form.Text = "Исходный код программы";
+            form.richTextBox1.Text = "https://github.com/KamilKhakimov/Lablandiya.git";
+            form.Show();
+        }
+        // Регулярки:
+        private void button9_Click(object sender, EventArgs e)
+        {
+            if (Regex.IsMatch(richTextBox1.Text, "^[0-9a-zA-Z!@#$%^&:;]+$"))
+                richTextBox2.Text = "строка " + richTextBox1.Text + " соответсвует регулярному выражению: [0-9a-zA-Z!@#$%^&:;]";
+            else
+                richTextBox2.Text = "строка " + richTextBox1.Text + " не соответсвует регулярному выражению: [0-9a-zA-Z!@#$%^&:;]";
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (Regex.IsMatch(richTextBox1.Text, "^[1|3]+[0-9a-zA-Z]{26,35}$"))
+                richTextBox2.Text = "строка " + richTextBox1.Text + " соответсвует регулярному выражению: [1|3]+[0-9a-zA-Z]{26,35}";
+            else
+                richTextBox2.Text = "строка " + richTextBox1.Text + " не соответсвует регулярному выражению: [1|3]+[0-9a-zA-Z]{26,35}";
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            if (Regex.IsMatch(richTextBox1.Text, "^-?(180(/.0+)?|1?[0-7]?[0-9])$"))
+                    richTextBox2.Text = "строка " + richTextBox1.Text + " соответсвует регулярному выражению: #[0-9A-Fa-f]{3}";
+            else
+                richTextBox2.Text = "строка " + richTextBox1.Text + " не соответсвует регулярному выражению: #[0-9A-Fa-f]{3}";
         }
     }
 }

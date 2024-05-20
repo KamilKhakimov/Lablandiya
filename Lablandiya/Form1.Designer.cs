@@ -59,18 +59,21 @@ namespace Lablandiya
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.вызовСправкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
+            this.button11 = new System.Windows.Forms.Button();
             this.Файл.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -162,49 +165,49 @@ namespace Lablandiya
             // отменитьToolStripMenuItem
             // 
             this.отменитьToolStripMenuItem.Name = "отменитьToolStripMenuItem";
-            this.отменитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.отменитьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.отменитьToolStripMenuItem.Text = "Отменить";
             this.отменитьToolStripMenuItem.Click += new System.EventHandler(this.отменитьToolStripMenuItem_Click);
             // 
             // повторитьToolStripMenuItem
             // 
             this.повторитьToolStripMenuItem.Name = "повторитьToolStripMenuItem";
-            this.повторитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.повторитьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.повторитьToolStripMenuItem.Text = "Повторить";
             this.повторитьToolStripMenuItem.Click += new System.EventHandler(this.повторитьToolStripMenuItem_Click);
             // 
             // вырезатьToolStripMenuItem
             // 
             this.вырезатьToolStripMenuItem.Name = "вырезатьToolStripMenuItem";
-            this.вырезатьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.вырезатьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.вырезатьToolStripMenuItem.Text = "Вырезать";
             this.вырезатьToolStripMenuItem.Click += new System.EventHandler(this.вырезатьToolStripMenuItem_Click);
             // 
             // копироватьToolStripMenuItem
             // 
             this.копироватьToolStripMenuItem.Name = "копироватьToolStripMenuItem";
-            this.копироватьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.копироватьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.копироватьToolStripMenuItem.Text = "Копировать";
             this.копироватьToolStripMenuItem.Click += new System.EventHandler(this.копироватьToolStripMenuItem_Click);
             // 
             // вставитьToolStripMenuItem
             // 
             this.вставитьToolStripMenuItem.Name = "вставитьToolStripMenuItem";
-            this.вставитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.вставитьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.вставитьToolStripMenuItem.Text = "Вставить";
             this.вставитьToolStripMenuItem.Click += new System.EventHandler(this.вставитьToolStripMenuItem_Click);
             // 
             // удалитьToolStripMenuItem
             // 
             this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.удалитьToolStripMenuItem.Text = "Удалить";
             this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
             // 
             // выделитьВсеToolStripMenuItem
             // 
             this.выделитьВсеToolStripMenuItem.Name = "выделитьВсеToolStripMenuItem";
-            this.выделитьВсеToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.выделитьВсеToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.выделитьВсеToolStripMenuItem.Text = "Выделить все";
             this.выделитьВсеToolStripMenuItem.Click += new System.EventHandler(this.выделитьВсеToolStripMenuItem_Click);
             // 
@@ -228,24 +231,28 @@ namespace Lablandiya
             this.постановкаЗадачиToolStripMenuItem.Name = "постановкаЗадачиToolStripMenuItem";
             this.постановкаЗадачиToolStripMenuItem.Size = new System.Drawing.Size(363, 26);
             this.постановкаЗадачиToolStripMenuItem.Text = "Постановка задачи";
+            this.постановкаЗадачиToolStripMenuItem.Click += new System.EventHandler(this.постановкаЗадачиToolStripMenuItem_Click);
             // 
             // грамматикаToolStripMenuItem
             // 
             this.грамматикаToolStripMenuItem.Name = "грамматикаToolStripMenuItem";
             this.грамматикаToolStripMenuItem.Size = new System.Drawing.Size(363, 26);
             this.грамматикаToolStripMenuItem.Text = "Грамматика";
+            this.грамматикаToolStripMenuItem.Click += new System.EventHandler(this.грамматикаToolStripMenuItem_Click);
             // 
             // классификацияГрамматикиToolStripMenuItem
             // 
             this.классификацияГрамматикиToolStripMenuItem.Name = "классификацияГрамматикиToolStripMenuItem";
             this.классификацияГрамматикиToolStripMenuItem.Size = new System.Drawing.Size(363, 26);
             this.классификацияГрамматикиToolStripMenuItem.Text = "Классификация грамматики";
+            this.классификацияГрамматикиToolStripMenuItem.Click += new System.EventHandler(this.классификацияГрамматикиToolStripMenuItem_Click);
             // 
             // методАнализаToolStripMenuItem
             // 
             this.методАнализаToolStripMenuItem.Name = "методАнализаToolStripMenuItem";
             this.методАнализаToolStripMenuItem.Size = new System.Drawing.Size(363, 26);
             this.методАнализаToolStripMenuItem.Text = "Метод анализа";
+            this.методАнализаToolStripMenuItem.Click += new System.EventHandler(this.методАнализаToolStripMenuItem_Click);
             // 
             // диагностикаИНейтрализацияОшибокToolStripMenuItem
             // 
@@ -258,18 +265,21 @@ namespace Lablandiya
             this.тестовыйПримерToolStripMenuItem.Name = "тестовыйПримерToolStripMenuItem";
             this.тестовыйПримерToolStripMenuItem.Size = new System.Drawing.Size(363, 26);
             this.тестовыйПримерToolStripMenuItem.Text = "Тестовый пример";
+            this.тестовыйПримерToolStripMenuItem.Click += new System.EventHandler(this.тестовыйПримерToolStripMenuItem_Click);
             // 
             // списокЛитературыToolStripMenuItem
             // 
             this.списокЛитературыToolStripMenuItem.Name = "списокЛитературыToolStripMenuItem";
             this.списокЛитературыToolStripMenuItem.Size = new System.Drawing.Size(363, 26);
             this.списокЛитературыToolStripMenuItem.Text = "Список литературы";
+            this.списокЛитературыToolStripMenuItem.Click += new System.EventHandler(this.списокЛитературыToolStripMenuItem_Click);
             // 
             // исходныйКодПрограммыToolStripMenuItem
             // 
             this.исходныйКодПрограммыToolStripMenuItem.Name = "исходныйКодПрограммыToolStripMenuItem";
             this.исходныйКодПрограммыToolStripMenuItem.Size = new System.Drawing.Size(363, 26);
             this.исходныйКодПрограммыToolStripMenuItem.Text = "Исходный код программы";
+            this.исходныйКодПрограммыToolStripMenuItem.Click += new System.EventHandler(this.исходныйКодПрограммыToolStripMenuItem_Click);
             // 
             // пускToolStripMenuItem
             // 
@@ -301,62 +311,6 @@ namespace Lablandiya
             this.оПрограммеToolStripMenuItem.Text = "О программе";
             this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
             // 
-            // button1
-            // 
-            this.button1.AutoSize = true;
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Location = new System.Drawing.Point(12, 35);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(50, 50);
-            this.button1.TabIndex = 4;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button2.Location = new System.Drawing.Point(68, 35);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(50, 50);
-            this.button2.TabIndex = 5;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.BackgroundImage = global::Lablandiya.Properties.Resources.free_icon_floppy_disk_2344313;
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button3.Location = new System.Drawing.Point(124, 35);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(50, 50);
-            this.button3.TabIndex = 6;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button4
-            // 
-            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button4.Location = new System.Drawing.Point(241, 38);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(50, 50);
-            this.button4.TabIndex = 7;
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // button5
-            // 
-            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button5.Location = new System.Drawing.Point(297, 38);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(50, 50);
-            this.button5.TabIndex = 8;
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
             // richTextBox1
             // 
             this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -365,7 +319,7 @@ namespace Lablandiya
             this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.richTextBox1.Location = new System.Drawing.Point(3, 3);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(902, 216);
+            this.richTextBox1.Size = new System.Drawing.Size(972, 216);
             this.richTextBox1.TabIndex = 11;
             this.richTextBox1.Text = "";
             // 
@@ -377,7 +331,7 @@ namespace Lablandiya
             this.richTextBox2.Location = new System.Drawing.Point(3, 3);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.ReadOnly = true;
-            this.richTextBox2.Size = new System.Drawing.Size(905, 215);
+            this.richTextBox2.Size = new System.Drawing.Size(975, 215);
             this.richTextBox2.TabIndex = 12;
             this.richTextBox2.Text = "";
             // 
@@ -386,39 +340,6 @@ namespace Lablandiya
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "file.png");
-            // 
-            // button6
-            // 
-            this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button6.Location = new System.Drawing.Point(353, 38);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(50, 50);
-            this.button6.TabIndex = 13;
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // button7
-            // 
-            this.button7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button7.BackgroundImage")));
-            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button7.Location = new System.Drawing.Point(409, 38);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(50, 50);
-            this.button7.TabIndex = 14;
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // button8
-            // 
-            this.button8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button8.BackgroundImage")));
-            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button8.Location = new System.Drawing.Point(466, 38);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(50, 50);
-            this.button8.TabIndex = 15;
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // splitContainer1
             // 
@@ -436,16 +357,138 @@ namespace Lablandiya
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBox2);
-            this.splitContainer1.Size = new System.Drawing.Size(908, 443);
+            this.splitContainer1.Size = new System.Drawing.Size(978, 443);
             this.splitContainer1.SplitterDistance = 221;
             this.splitContainer1.TabIndex = 16;
+            // 
+            // button8
+            // 
+            this.button8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button8.BackgroundImage")));
+            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button8.Location = new System.Drawing.Point(466, 38);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(50, 50);
+            this.button8.TabIndex = 15;
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // button7
+            // 
+            this.button7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button7.BackgroundImage")));
+            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button7.Location = new System.Drawing.Point(409, 38);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(50, 50);
+            this.button7.TabIndex = 14;
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button6
+            // 
+            this.button6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button6.BackgroundImage")));
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button6.Location = new System.Drawing.Point(353, 38);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(50, 50);
+            this.button6.TabIndex = 13;
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button5
+            // 
+            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button5.Location = new System.Drawing.Point(297, 38);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(50, 50);
+            this.button5.TabIndex = 8;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button4
+            // 
+            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button4.Location = new System.Drawing.Point(241, 38);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(50, 50);
+            this.button4.TabIndex = 7;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackgroundImage = global::Lablandiya.Properties.Resources.free_icon_floppy_disk_2344313;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.Location = new System.Drawing.Point(124, 35);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(50, 50);
+            this.button3.TabIndex = 6;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.Location = new System.Drawing.Point(68, 35);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(50, 50);
+            this.button2.TabIndex = 5;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.Location = new System.Drawing.Point(12, 35);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(50, 50);
+            this.button1.TabIndex = 4;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(612, 35);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(111, 50);
+            this.button9.TabIndex = 17;
+            this.button9.Text = "Регулярка 1";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
+            // button10
+            // 
+            this.button10.Location = new System.Drawing.Point(740, 35);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(116, 50);
+            this.button10.TabIndex = 18;
+            this.button10.Text = "Регулярка 2";
+            this.button10.UseVisualStyleBackColor = true;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
+            // button11
+            // 
+            this.button11.Location = new System.Drawing.Point(874, 35);
+            this.button11.Name = "button11";
+            this.button11.Size = new System.Drawing.Size(113, 50);
+            this.button11.TabIndex = 19;
+            this.button11.Text = "Регулярка 3";
+            this.button11.UseVisualStyleBackColor = true;
+            this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // Form1
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(932, 562);
+            this.ClientSize = new System.Drawing.Size(1002, 562);
+            this.Controls.Add(this.button11);
+            this.Controls.Add(this.button10);
+            this.Controls.Add(this.button9);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button7);
@@ -514,6 +557,9 @@ namespace Lablandiya
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button button11;
     }
 }
 
