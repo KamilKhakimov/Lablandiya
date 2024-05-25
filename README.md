@@ -16,3 +16,5 @@ G[begin-stmt]:
 arith-expr * arith-expr
 VAR – переменная Б{Б|Ц}, Б – {a, b, c, ...z, A, B, …, Z}, NUM – {0, 1,
 …, 9}, compare-op – ”==” | ”<” | ”<=” | ”>” | ”>=” | ”!=”
+
+![](Lablandiya/Картинки/6.png)
